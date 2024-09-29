@@ -3,14 +3,22 @@ ImageClassification.py: takes in jpeg in a pre-specified folder (./images), runs
 app.py: flask webserver running react app
 sql.py: has sql POST functions for tag and image
 
-1. install chrome extension (dev mode, load unpacked, and open the extension folder)
-2. make a virtual env (<=python 3.10), pip install -r requirements
-3. open the root folder in vscode, run app.py
-4. run: 
+1. Download / git clone the code. Unzip if required.
+2. install chrome extension (open chrome, extensions > dev mode > load unpacked > select the extension folder)
+3. Open folder in VSCode, make a virtual env (<=python 3.10) [varies by operating system, google how to do it]
+4. run ```pip install -r requirements``` in terminal
+5. open the root folder of the project in VSCode, run app.py
+6. In another terminal, run: 
     npm install 
     npm run
-5. add images of your wardrobe items to ./images
-6. go to uniqlo
+7. add images of your wardrobe items to ./images
+8. go to uniqlo, click on products and should work!
+
+If it doesn't, work, troubleshoot by:
+1. Try simply restarting the extension from extension settings.
+2. Try reloading the Uniqlo website.
+3. Inspect element Uniqlo site, open console, search 'contentScript', and the contentScript.js 's logs should be visible.
+
 
 
 ## Inspiration
