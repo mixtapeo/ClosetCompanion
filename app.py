@@ -16,19 +16,6 @@ app = Flask(__name__)
 # Initialize GPT instance
 # gpt_instance = GPT(os.getenv('OPENAI_API_KEY'))
 CORS(app)
-@app.route('/')
-def home():
-    """
-    Home page
-    """
-    return render_template('index.html') # Landing page
-
-@app.route('/upload', methods=['POST'])
-def start_program():
-    """
-    User interface for starting the program.
-    """
-    print('Starting program...')
 
 @app.route('/api/update', methods=['GET'])
 def update():
@@ -60,23 +47,13 @@ def compare():
         image_incoming = f'{os.getcwd()}\\download.jpg'
         
         for image in os.listdir(f'{os.getcwd()}\\images'):
-            print(image)
-            image = f'{os.getcwd()}\\images\\{image}'
-            difference = ImageClassification.image_similarity(image_incoming, image)
-            print(difference)
-            if difference > 0.6:
-                return jsonify({"message": 1})
+            image_comparing = f'{os.getcwd()}\\images\\{image}'
+            if ImageClassification.is_image_similar(image_comparing, image_incoming):
+                return jsonify({"message": 1}) # similar
             else:
-                return jsonify({"message": 0}) # similar
+                return jsonify({"message": 0}) # different
     else:
-        image_compared_to = f'{os.getcwd()}\\images\\image1.jpg'
-        image_original = f'{os.getcwd()}\\images\\image2.jpg'
-        difference = ImageClassification.image_similarity(image_compared_to, image_original)
-        
-        if difference > 0.6:
-            return jsonify({"message": 1})
-        else:
-            return jsonify({"message": 0}) # similar
+        pass
     
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

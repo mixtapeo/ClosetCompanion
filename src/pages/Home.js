@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className ="bg-min-h-screen flex flex-col items-center p-6">
       <h1 className="text-4xl font-bold mb-4 text-center">Welcome</h1>
-      <p className="text-lg mb-8 text-center">View your catlog below..</p>
+      <p className="text-lg mb-8 text-center">View your catalog below...</p>
       <div className = "  flex flex-wrap justify-center gap-10"> 
 
      

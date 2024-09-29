@@ -12,16 +12,20 @@
         margin-top: 10px;
         font-size: 16px;
       }
-    p {
-      white-space: nowrap; /* Prevent text wrapping */
-    }
-  </style>
+      p {
+        white-space: nowrap; /* Prevent text wrapping */
+      }
+      #icon {
+        width: 100px; /* Adjust the size as needed */
+        height: 100px; /* Adjust the size as needed */
+        display: block;
+        margin: 0 auto; /* Center the icon */
+      }
+    </style>
   </head>
   <body>
-    <h2>For HackTheHill</h2>
-    <p id="message">Will alert you when you have a similar <br>piece in your wardrobe!</p>
-    <p>Image on screen:</p>
-    <img id="capturedImage" src="" alt="Captured Image">
-  
+    <img id="icon" src="icon.jpg" alt="Clothes Tracker Icon">
+    <h2>Closet Companion</h2>
+    <p id="message">Alerts you when you have a similar <br> piece in your wardrobe!</p>
   </body>
 </html>

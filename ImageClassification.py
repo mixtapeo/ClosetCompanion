@@ -13,28 +13,65 @@ import cv2
 import scipy.spatial.distance as dist
 import numpy as np
 
-def image_similarity(image1_path, image2_path):
-	image1 = cv2.imread(image1_path)
-	image2 = cv2.imread(image2_path)
+# # Old model, deprecated.
+# def image_similarity(image1_path, image2_path):
+# 	image1 = cv2.imread(image1_path)
+# 	image2 = cv2.imread(image2_path)
 
-	# Check if images are loaded correctly
-	if image1 is None:
-		print(f"Error loading image: {image1_path}")
-	if image2 is None:
-		print(f"Error loading image: {image2_path}")
+# 	# Check if images are loaded correctly
+# 	if image1 is None:
+# 		print(f"Error loading image: {image1_path}")
+# 	if image2 is None:
+# 		print(f"Error loading image: {image2_path}")
 
-	# Resize images to the same dimensions
-	target_size = (224, 224)  # Example target size
-	image1_resized = cv2.resize(image1, target_size)
-	image2_resized = cv2.resize(image2, target_size)
+# 	# Resize images to the same dimensions
+# 	target_size = (224, 224)  # Example target size
+# 	image1_resized = cv2.resize(image1, target_size)
+# 	image2_resized = cv2.resize(image2, target_size)
 
-	# Flatten the images
-	image1_flattened = image1_resized.flatten()
-	image2_flattened = image2_resized.flatten()
+# 	# Flatten the images
+# 	image1_flattened = image1_resized.flatten()
+# 	image2_flattened = image2_resized.flatten()
 
-	# Compute Euclidean distance
-	a = dist.euclidean(image1_flattened, image2_flattened)
-	return a / 100000  # 0 ==> similar image, 1 ==> different image
+# 	# Compute Euclidean distance
+# 	a = dist.euclidean(image1_flattened, image2_flattened)
+# 	return a / 100000  # 0 ==> similar image, 1 ==> different image
+
+
+def is_image_similar(img1_path, img2_path, threshold=0.75):
+    # Load images
+    img1 = cv2.imread(img1_path, cv2.IMREAD_GRAYSCALE)
+    img2 = cv2.imread(img2_path, cv2.IMREAD_GRAYSCALE)
+    
+    # Check if images are loaded
+    if img1 is None or img2 is None:
+        print("Error loading images.")
+        return False
+
+    # Initialize ORB detector
+    orb = cv2.ORB_create()
+
+    # Find keypoints and descriptors with ORB
+    keypoints1, descriptors1 = orb.detectAndCompute(img1, None)
+    keypoints2, descriptors2 = orb.detectAndCompute(img2, None)
+
+    # Initialize BFMatcher (Brute Force Matcher)
+    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+
+    # Match descriptors
+    matches = bf.match(descriptors1, descriptors2)
+
+    # Sort matches based on distance (lower distance is better)
+    matches = sorted(matches, key=lambda x: x.distance)
+
+    # Calculate the similarity score based on the matches
+    match_count = len(matches)
+    similar_matches = sum([1 for m in matches if m.distance < threshold * 96])  # Adjust threshold
+    similarity_score = similar_matches / match_count
+
+    print(f"Similarity Score: {similarity_score * 100:.2f}")
+
+    return similarity_score > threshold
 
 def classify_image(img_path, model):
     """Load and classify an image using the pre-trained MobileNetV2 model."""
@@ -78,10 +115,10 @@ def classify_images_in_folder(model):
 
 if __name__ == "__main__":
     folder_path = f'{os.getcwd()}\\images'
+    img1_path = f'{folder_path}\\image (4).jpg'  # Replace with your image path
+    img2_path = f'{folder_path}\\image (5).jpg' # Replace with your image path
 
-    if os.path.exists(folder_path) and os.path.isdir(folder_path):
-        #classify_images_in_folder()
-        #print("Image classification complete.")
-        image_similarity(f'{os.getcwd()}\\images\\image1.jpg', image = f'{os.getcwd()}\\images\\{image}')
+    if is_image_similar(img1_path, img2_path):
+        print("The images are similar.")
     else:
-        print("Invalid folder path. Please try again.")
+        print("The images are not similar.")

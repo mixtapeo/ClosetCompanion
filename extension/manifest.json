@@ -5,6 +5,11 @@
     "host_permissions": [
         "http://127.0.0.1/*"
     ],
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
     "description": "Finds image elements on Uniqlo's website and displays a popup.",
     "permissions": [
         "activeTab",
