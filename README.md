@@ -9,8 +9,8 @@ sql.py: has sql POST functions for tag and image
 4. run ```pip install -r requirements``` in terminal
 5. open the root folder of the project in VSCode, run app.py
 6. In another terminal, run: 
-    npm install 
-    npm run
+    ```npm install``` 
+    ```npm run```
 7. add images of your wardrobe items to ./images
 8. go to uniqlo, click on products and should work!
 
