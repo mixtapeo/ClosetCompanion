@@ -1,0 +1,33 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Align cards to the start of the container */
+    gap: 2rem; /* Space between the cards */
+    margin: 30px; /* Space around the container */
+}
+
+.card {
+    padding: 2px; /* Padding inside the card */
+    margin: 8px; /* Margin around each card */
+    width: auto; /* Allow the card to take the full size of the image */
+    max-width: 300px; /* Optional: Set a maximum width */
+
+    
+    transition: transform 0.5s; /* Smooth transition foar hover effect */
+    display: flex; /* Flexbox for proper alignment */
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-25px); /* Hover effect */
+}
+
+.card-image {
+    width: 100%; /* Make the image take full width of the card */
+    height: auto; /* Keep the aspect ratio of the image */
+    max-height: 500px; /* Optional: Set a maximum height */
+    object-fit: contain; /* Ensure the whole image is visible, without cropping */
+    border-radius: 8px; /* Rounded corners for the image */
+    box-shadow: 0 8px 8px rgb(93, 89, 89); /* Add shadow below the image */
+    
+}

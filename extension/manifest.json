@@ -19,7 +19,7 @@
     "content_scripts": [
         {
             "matches": [
-                "https://www.uniqlo.com/ca/en/*"
+                "https://www.uniqlo.com/ca/en/products/*"
             ],
             "js": [
                 "contentScript.js"

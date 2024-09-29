@@ -2,3 +2,4 @@
 .vscode/
 .tox/
 .__pycache__/
+/node_modules
