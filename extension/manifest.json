@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Clothes tracker",
+    "version": "1.0",
+    "host_permissions": [
+        "http://127.0.0.1/*"
+    ],
+    "description": "Finds image elements on Uniqlo's website and displays a popup.",
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.uniqlo.com/ca/en/*"
+            ],
+            "js": [
+                "contentScript.js"
+            ]
+        }
+    ]
+}
