@@ -9,4 +9,5 @@ sql.py: has sql POST functions for tag and image
 4. run: 
     npm install 
     npm run
-5. go to uniqlo
+5. add images of your wardrobe items to ./images
+6. go to uniqlo
