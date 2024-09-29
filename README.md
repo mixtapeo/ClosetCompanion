@@ -6,7 +6,7 @@ sql.py: has sql POST functions for tag and image
 1. Download / git clone the code. Unzip if required.
 2. install chrome extension (open chrome, extensions > dev mode > load unpacked > select the extension folder)
 3. Open folder in VSCode, make a virtual env (<=python 3.10) [varies by operating system, google how to do it]
-4. run ```pip install -r requirements``` in terminal
+4. run ```pip install -r requirements.txt``` in terminal
 5. open the root folder of the project in VSCode, run app.py
 6. In another terminal, run: 
     ```npm install``` 
